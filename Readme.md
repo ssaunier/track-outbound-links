@@ -16,6 +16,14 @@ Before the closing tag `</script>`, insert the minimified javascript.
 
 It will automatically listen for external links and report them as clicked in Google Analytics.
 
+## Where can I view the statistics?
+
+Go to your Google Analytics page, and select in the left menu "Behavior -> Events -> Overview".
+
+![Behavior -> Events -> Overview](https://raw.github.com/ssaunier/track-external-links/master/img/behavior_events_overview.png)
+
+Then if you click on "Event label" you should see which external URLs have been clicked.
+
 ## Development
 
 To debug the script, run
