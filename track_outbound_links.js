@@ -1,25 +1,25 @@
 /*!
- * http://github.com/ssaunier/track-external-links
+ * http://github.com/ssaunier/track-outbound-links
  * Copyright 2013 Sébastien Saunier
  * @license MIT
  */
 
 (function(window, document) {
-  function getExternalLinks() {
+  function getOutboundLinks() {
     var links = document.getElementsByTagName('a');
-    var externalLinks = [];
+    var outboundLinks = [];
     for (var i = 0; i < links.length; ++i) {
       var link = links[i];
       if (link.host != window.location.host) {
-        externalLinks.push(link);
+        outboundLinks.push(link);
       }
     }
-    return externalLinks;
+    return outboundLinks;
   }
 
-  function trackExternalLink() {
+  function trackOutboundLink() {
     var link = this;
-    window._gaq && _gaq.push(['_trackEvent', 'External link', 'Click', link.href ]);
+    window._gaq && _gaq.push(['_trackEvent', 'Outbound link', 'Click', link.href ]);
     setTimeout(function() {
       document.location.href = link.href;
     }, 100);  // Delay navigation so that GA is notified of the click
@@ -28,9 +28,9 @@
 
   // Track outbound links
   window.addEventListener('load', function() {
-    var externalLinks = getExternalLinks();
-    for (var i in externalLinks) {
-      externalLinks[i].addEventListener('click', trackExternalLink);
+    var outboundLinks = getOutboundLinks();
+    for (var i in outboundLinks) {
+      outboundLinks[i].addEventListener('click', trackOutboundLink);
     }
   });
 }(window, document));
