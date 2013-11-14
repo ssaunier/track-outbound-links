@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-(function() {
+(function(window, document) {
   function getExternalLinks() {
     var links = document.getElementsByTagName('a');
     var externalLinks = [];
@@ -33,4 +33,4 @@
       externalLinks[i].addEventListener('click', trackExternalLink);
     }
   });
-}());
+}(window, document));
