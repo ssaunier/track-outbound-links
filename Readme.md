@@ -11,7 +11,7 @@ Before the closing tag `</script>`, insert the minimified javascript.
  * Copyright 2013 Sébastien Saunier
  * @license MIT
  */
-!function(n,t){function e(){for(var e=t.getElementsByTagName("a"),r=[],a=0;a<e.length;++a){var o=e[a];o.host!=n.location.host&&r.push(o)}return r}function r(){var e=this;return n._gaq&&_gaq.push(["_trackEvent","Outbound link","Click",e.href]),setTimeout(function(){t.location.href=e.href},100),!1}n.addEventListener("load",function(){var n=e();for(var t in n)n[t].addEventListener("click",r)})}(window,document);
+!function(e,t){function n(){for(var n=t.getElementsByTagName("a"),a=[],r=0;r<n.length;++r){var o=n[r];o.host!=e.location.host&&a.push(o)}return a}function a(n){for(var a=n.srcElement||n.target;a&&("undefined"==typeof a.tagName||"a"!=a.tagName.toLowerCase()||!a.href);)a=a.parentNode;a&&a.href&&(e._gaq&&_gaq.push(["_trackEvent","Outbound link","Click",a.href]),(!a.target||a.target.match(/^_(self|parent|top)$/i))&&(setTimeout(function(){t.location.href=a.href},150),n.preventDefault?n.preventDefault():n.returnValue=!1))}e.addEventListener("load",function(){var e=n();for(var t in e)e[t].addEventListener("click",a)})}(window,document);
 ```
 
 It will automatically listen for outbound links and report them as clicked in Google Analytics.
