@@ -17,13 +17,35 @@
     return outboundLinks;
   }
 
-  function trackOutboundLink() {
-    var link = this;
-    window._gaq && _gaq.push(['_trackEvent', 'Outbound link', 'Click', link.href ]);
-    setTimeout(function() {
-      document.location.href = link.href;
-    }, 100);  // Delay navigation so that GA is notified of the click
-    return false;
+  function trackOutboundLink(event) {
+
+
+    // Find actual <a> element in ancestors (e.g. image within a link)
+    var link = event.srcElement || event.target;
+    while (link && (typeof link.tagName == 'undefined' || link.tagName.toLowerCase() != 'a' || !link.href)) {
+     link = link.parentNode;
+    }
+
+    if (!link || !link.href) {
+      return;
+    }
+
+    // Track
+    if (window._gaq) {
+      _gaq.push(['_trackEvent', 'Outbound link', 'Click', link.href ]);
+    }
+
+    // Delay navigation so that GA is notified of the click
+    if(!link.target || link.target.match(/^_(self|parent|top)$/i)) {
+       setTimeout(function() {
+         document.location.href = link.href;
+       }, 150);
+      if (event.preventDefault) {
+        event.preventDefault();
+      } else {
+        event.returnValue = false;
+      }
+    }
   }
 
   // Track outbound links
