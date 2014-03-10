@@ -31,6 +31,8 @@
     // Track
     if (window.ga) {
       ga('send', 'event', 'Outbound link', 'Click', link.href);
+    } else if (window._gaq) {
+      _gaq.push(['_trackEvent', 'Outbound link', 'Click', link.href ]);
     }
 
     // Delay navigation so that GA is notified of the click
