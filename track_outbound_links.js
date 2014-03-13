@@ -18,8 +18,6 @@
   }
 
   function trackOutboundLink(event) {
-
-
     // Find actual <a> element in ancestors (e.g. image within a link)
     var link = event.srcElement || event.target;
     while (link && (typeof link.tagName == 'undefined' || link.tagName.toLowerCase() != 'a' || !link.href)) {
@@ -31,7 +29,9 @@
     }
 
     // Track
-    if (window._gaq) {
+    if (window.ga) {
+      ga('send', 'event', 'Outbound link', 'Click', link.href);
+    } else if (window._gaq) {
       _gaq.push(['_trackEvent', 'Outbound link', 'Click', link.href ]);
     }
 
