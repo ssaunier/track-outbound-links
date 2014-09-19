@@ -3,7 +3,7 @@
 ## Install
 
 Locate your `<script>` tag where you included the Google Analytics tracking code.
-Before the closing tag `</script>`, insert the minimified javascript.
+Before the closing tag `</script>`, insert the minified javascript.
 
 ```js
 /*!
